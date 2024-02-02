@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './NavBar.scss';
 
 const Navbar = () => {
@@ -11,30 +11,34 @@ const Navbar = () => {
 
   return (
     <nav>
-      <div className="nav-header">
-        <img src='../' alt='OZEAN'/>
-      </div>
-
-      <div className={`nav-links ${isOpen ? 'open' : ''}`}>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/best-sellers">Best Sellers</Link></li>
-          <li><Link to="/about-us">About us</Link></li>
-        </ul>
-      </div>
-      <div className="nav-links">
-        <ul>
-          <li><Link to="/profile">Profile</Link></li>
-          <li><Link to="/cart">Cart</Link></li>
-          <li><Link to="/liked">Liked</Link></li>
-        </ul>
-      </div>
-
-      <button className="nav-toggle" onClick={toggleNav}>
-        <span></span>
-        <span></span>
-        <span></span>
+      <button className={`nav-toggle ${isOpen ? 'open' : ''}`} onClick={toggleNav}>
+        {isOpen ? (
+          <span className="exit-icon">&#10005;</span>
+        ) : (
+          <div className="hamburger-menu">
+            <span className="hamburger-icon"></span>
+            <span className="hamburger-icon"></span>
+            <span className="hamburger-icon"></span>
+          </div>
+        )}
       </button>
+      <div className='nav-header'>
+        <img className='nav-logo' src='../' alt='OZEAN'/>
+        <div className={`nav-links ${isOpen ? 'open' : ''}`}>
+          <ul>
+            <li><NavLink to="/" activeClassName="active">Home</NavLink></li>
+            <li><NavLink to="/best-sellers" activeClassName="active">Best Sellers</NavLink></li>
+            <li><NavLink to="/about-us" activeClassName="active">About us</NavLink></li>
+          </ul>
+        </div>
+        <div className={`nav-links mobile-hidden ${isOpen ? '' : 'hide-on-mobile'}`}>
+          <ul>
+            <li><NavLink to="/profile" activeClassName="active">Profile</NavLink></li>
+            <li><NavLink to="/cart" activeClassName="active">Cart</NavLink></li>
+            <li><NavLink to="/liked" activeClassName="active">Liked</NavLink></li>
+          </ul>
+        </div>
+      </div>
     </nav>
   );
 }

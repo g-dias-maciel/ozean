@@ -12,6 +12,7 @@ import ProfilePage from './components/ProfilePage';
 import CartPage from './components/CartPage';
 import LikedPage from './components/LikedPage';
 import LanguageSwitch from './components/LanguageSwitch';
+import './App.css';
 
 function App() {
   const [language, setLanguage] = useState('en');
@@ -23,18 +24,20 @@ function App() {
   };
 
   return (
-    <Router>
-      <LanguageSwitch onLanguageChange={handleLanguageChange} />
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/best-sellers" element={<BestSellersPage />} />
-        <Route path="/about-us" element={<AboutUsPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/liked" element={<LikedPage />} />
-      </Routes>
-    </Router>
+      <Router>
+        <div className='wrapper'>
+          <LanguageSwitch onLanguageChange={handleLanguageChange} />
+          <Navbar />
+        </div>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/best-sellers" element={<BestSellersPage />} />
+          <Route path="/about-us" element={<AboutUsPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/liked" element={<LikedPage />} />
+        </Routes>
+      </Router>
   );
 }
 
